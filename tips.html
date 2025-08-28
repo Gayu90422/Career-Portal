@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interview Tips - Career Portal</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f4f6f9;
+      color: #333;
+      transition: background 0.3s, color 0.3s;
+    }
+    body.dark {
+      background: #1e1e1e;
+      color: #eee;
+    }
+
+    header {
+      background: #2c3e50;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    header h1 { margin: 0; }
+
+    .container { max-width: 1000px; margin: 30px auto; padding: 20px; }
+
+    .search-box {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .search-box input {
+      padding: 10px;
+      width: 80%;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+
+    .tabs {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    .tabs button {
+      background: #3498db;
+      color: white;
+      border: none;
+      margin: 5px;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .tabs button:hover { background: #2980b9; }
+
+    .accordion {
+      background: white;
+      border-radius: 12px;
+      margin-bottom: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      overflow: hidden;
+      transition: transform 0.3s;
+    }
+    .accordion:hover { transform: scale(1.01); }
+
+    .accordion-header {
+      padding: 15px;
+      cursor: pointer;
+      font-size: 1.1rem;
+      background: #ecf0f1;
+    }
+    .accordion-content {
+      display: none;
+      padding: 15px;
+      background: #fff;
+      animation: fadeIn 0.5s;
+    }
+    @keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
+
+    ul { padding-left: 20px; }
+    li { margin: 6px 0; line-height: 1.5; }
+
+    footer {
+      text-align: center;
+      padding: 15px;
+      background: #2c3e50;
+      color: white;
+      margin-top: 30px;
+    }
+
+    .btn-download {
+      margin-top: 10px;
+      background: #27ae60;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .btn-download:hover { background: #1e8449; }
+
+    .dark-toggle {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: #444;
+      color: white;
+      padding: 8px 15px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Interview Tips</h1>
+    <p>Prepare smartly with subject-wise guidance</p>
+    <button class="dark-toggle" onclick="toggleDarkMode()">🌙 Toggle Dark Mode</button>
+  </header>
+
+  <div class="container">
+    <!-- Top 10 Interview Questions -->
+    <div class="accordion">
+      <div class="accordion-header">⭐ Top 10 Common Interview Questions</div>
+      <div class="accordion-content">
+        <ol>
+          <li>Tell me about yourself.</li>
+          <li>Why should we hire you?</li>
+          <li>What are your strengths and weaknesses?</li>
+          <li>Where do you see yourself in 5 years?</li>
+          <li>Tell me about a challenge you faced and how you solved it.</li>
+          <li>Why do you want to work here?</li>
+          <li>Describe a project you worked on.</li>
+          <li>How do you handle pressure?</li>
+          <li>What are your career goals?</li>
+          <li>Do you have any questions for us?</li>
+        </ol>
+      </div>
+    </div>
+
+    <!-- Search -->
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="Search for a subject (e.g., Chemistry)...">
+    </div>
+
+    <!-- Tabs -->
+    <div class="tabs">
+      <button onclick="filterTabs('all')">All</button>
+      <button onclick="filterTabs('cs')">Computer Science</button>
+      <button onclick="filterTabs('physics')">Physics</button>
+      <button onclick="filterTabs('micro')">Microbiology</button>
+      <button onclick="filterTabs('chem')">Chemistry</button>
+    </div>
+
+    <!-- Subjects Accordion -->
+    <div class="accordion subject cs">
+      <div class="accordion-header">💻 Computer Science</div>
+      <div class="accordion-content" id="cs-tips">
+        <ul>
+          <li>Revise data structures, algorithms, and time complexity basics.</li>
+          <li>Practice coding problems on platforms like LeetCode.</li>
+          <li>Review OOP, DBMS, OS, and networking fundamentals.</li>
+          <li>Prepare to explain projects clearly.</li>
+        </ul>
+        <button class="btn-download" onclick="downloadPDF('Computer Science', 'cs-tips')">Download PDF</button>
+      </div>
+    </div>
+
+    <div class="accordion subject physics">
+      <div class="accordion-header">🔬 Physics</div>
+      <div class="accordion-content" id="physics-tips">
+        <ul>
+          <li>Revise mechanics, optics, and thermodynamics.</li>
+          <li>Practice solving numericals quickly and accurately.</li>
+          <li>Explain real-world applications of principles.</li>
+          <li>Showcase experiment experiences.</li>
+        </ul>
+        <button class="btn-download" onclick="downloadPDF('Physics', 'physics-tips')">Download PDF</button>
+      </div>
+    </div>
+
+    <div class="accordion subject micro">
+      <div class="accordion-header">🧫 Microbiology</div>
+      <div class="accordion-content" id="micro-tips">
+        <ul>
+          <li>Review techniques like staining, culturing, microscopy.</li>
+          <li>Stay updated on immunology and virology discoveries.</li>
+          <li>Understand industrial and healthcare applications.</li>
+          <li>Be ready to explain safety protocols.</li>
+        </ul>
+        <button class="btn-download" onclick="downloadPDF('Microbiology', 'micro-tips')">Download PDF</button>
+      </div>
+    </div>
+
+
+    <div class="accordion subject chem">
+      <div class="accordion-header">⚗️ Chemistry</div>
+      <div class="accordion-content" id="chem-tips">
+        <ul>
+          <li>Brush up on organic, inorganic, and physical chemistry basics.</li>
+          <li>Understand periodic trends and reaction mechanisms.</li>
+          <li>Be prepared for industry-based application questions.</li>
+          <li>Explain your experiments or research clearly.</li>
+        </ul>
+        <button class="btn-download" onclick="downloadPDF('Chemistry', 'chem-tips')">Download PDF</button>
+      </div>
+    </div>
+
+    <a class="back-home" href="index.html">⬅ Back to Home</a>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Career Portal | Designed for interview success</p>
+  </footer>
+
+  <script>
+    // Accordion Toggle
+    document.querySelectorAll('.accordion-header').forEach(header => {
+      header.addEventListener('click', () => {
+        let content = header.nextElementSibling;
+        content.style.display = (content.style.display === "block") ? "none" : "block";
+      });
+    });
+
+    // Tabs Filter
+    function filterTabs(category) {
+      let subjects = document.querySelectorAll('.subject');
+      subjects.forEach(sub => {
+        if (category === "all" || sub.classList.contains(category)) {
+          sub.style.display = "block";
+        } else {
+          sub.style.display = "none";
+        }
+      });
+    }
+
+    // Search Filter
+    document.getElementById("searchInput").addEventListener("keyup", function() {
+      let value = this.value.toLowerCase();
+      document.querySelectorAll('.subject').forEach(sub => {
+        sub.style.display = sub.innerText.toLowerCase().includes(value) ? "block" : "none";
+      });
+    });
+
+    // Dark Mode
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark');
+    }
+
+    // Download as PDF
+    function downloadPDF(title, elementId) {
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+      let content = document.getElementById(elementId).innerText;
+      doc.text(title + " Interview Tips", 10, 10);
+      doc.text(content, 10, 20);
+      doc.save(title + "_Interview_Tips.pdf");
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interview Tips</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0; padding: 0;
+      background: #f4f4f9; color: #333;
+      transition: background 0.3s, color 0.3s;
+    }
+    header {
+      background: #d43d90; color: white;
+      padding: 15px; text-align: center;
+    }
+    nav {
+      display: flex; justify-content: center;
+      background: #333; padding: 10px;
+    }
+    nav button {
+      background: #555; color: white;
+      border: none; margin: 0 5px;
+      padding: 10px 15px; cursor: pointer;
+      border-radius: 5px;
+    }
+    nav button.active { background: #b81db8; }
+    .container { max-width: 900px; margin: 20px auto; padding: 20px; }
+    .search-box {
+      width: 100%; padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc; border-radius: 5px;
+    }
+    .faq-item {
+      background: white; margin: 10px 0; padding: 15px;
+      border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      cursor: pointer;
+    }
+    .faq-question {
+      font-weight: bold; display: flex; align-items: center;
+    }
+    .faq-answer {
+      display: none; margin-top: 10px;
+      padding: 10px; border-left: 4px solid #5388c0;
+      background: #fffbea; border-radius: 5px;
+    }
+    .faq-item.open .faq-answer { display: block; animation: fadeIn 0.3s; }
+    @keyframes fadeIn { from {opacity: 0;} to {opacity: 1;} }
+    .dark { background: #1e1e1e; color: #f4f4f9; }
+    .dark .faq-item { background: #2c2c2c; color: #fff; }
+    .dark .faq-answer { background: #333; border-left-color: #ff9800; }
+    .toolbar { text-align: right; margin: 10px 0; }
+    .toolbar button {
+      background: #538; color: white;
+      border: none; padding: 8px 12px;
+      margin-left: 5px; cursor: pointer; border-radius: 5px;
+    }
+    .faq-checkbox { margin-right: 8px; }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>💼 Interview Tips Portal</h1>
+</header>
+
+<nav>
+  <button class="tablink active" onclick="openSubject(event, 'cs')">💻 Computer Science</button>
+  <button class="tablink" onclick="openSubject(event, 'physics')">⚛️ Physics</button>
+  <button class="tablink" onclick="openSubject(event, 'microbiology')">🧫 Microbiology</button>
+  <button class="tablink" onclick="openSubject(event, 'chemistry')">🧪 Chemistry</button>
+</nav>
+
+<div class="container">
+  <div class="toolbar">
+    <button onclick="toggleDarkMode()">🌙 Toggle Dark Mode</button>
+    <button onclick="downloadPDF()">📄 Download PDF</button>
+  </div>
+  <input type="text" id="searchBox" class="search-box" placeholder="🔍 Search questions...">
+
+  <!-- Computer Science Section -->
+  <div id="cs" class="subject">
+    <h2>💻 Computer Science – Top 15 Questions</h2>
+
+    <div class="faq-item">
+      <div class="faq-question"><input type="checkbox" class="faq-checkbox">❓ What is OOP?</div>
+      <div class="faq-answer">💡 Object-Oriented Programming organizes code into objects containing data and methods, promoting reuse and modularity.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question"><input type="checkbox" class="faq-checkbox">❓ Explain polymorphism.</div>
+      <div class="faq-answer">💡 Polymorphism allows one interface with multiple implementations, such as method overloading and overriding.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question"><input type="checkbox" class="faq-checkbox">❓ What is a database index?</div>
+      <div class="faq-answer">💡 An index improves data retrieval speed by creating quick lookup references in a database table.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question"><input type="checkbox" class="faq-checkbox">❓ Define normalization in DBMS.</div>
+      <div class="faq-answer">💡 Normalization organizes data to reduce redundancy and improve consistency using normal forms.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question"><input type="checkbox" class="faq-checkbox">❓ Difference between TCP and UDP?</div>
+      <div class="faq-answer">💡 TCP is reliable, connection-oriented, and slower. UDP is faster, connectionless, but less reliable.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question"><input type="checkbox" class="faq-checkbox">❓ What is an operating system?</div>
+      <div class="faq-answer">💡 An OS manages hardware, software resources, and provides services for programs.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question"><input type="checkbox" class="faq-checkbox">❓ Explain deadlock.</div>
+      <div class="faq-answer">💡 Deadlock occurs when processes are stuck waiting for each other’s resources indefinitely.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question"><input type="checkbox" class="faq-checkbox">❓ What is a thread?</div>
+      <div class="faq-answer">💡 A thread is the smallest unit of execution within a process, enabling multitasking.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question"><input type="checkbox" class="faq-checkbox">❓ Explain cloud computing.</div>
+      <div class="faq-answer">💡 Cloud computing delivers computing services like storage and servers over the internet.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question"><input type="checkbox" class="faq-checkbox">❓ What is machine learning?</div>
+      <div class="faq-answer">💡 ML is a subset of AI where systems learn from data patterns and improve performance automatically.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question"><input type="checkbox" class="faq-checkbox">❓ What is Big O notation?</div>
+      <div class="faq-answer">💡 Big O describes algorithm efficiency in terms of time and space complexity.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question"><input type="checkbox" class="faq-checkbox">❓ Define compiler vs interpreter.</div>
+      <div class="faq-answer">💡 A compiler translates code before execution; an interpreter translates line-by-line during execution.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question"><input type="checkbox" class="faq-checkbox">❓ What is recursion?</div>
+      <div class="faq-answer">💡 Recursion is when a function calls itself until a base condition is met.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question"><input type="checkbox" class="faq-checkbox">❓ Explain stack vs queue.</div>
+      <div class="faq-answer">💡 Stack follows LIFO (Last In First Out), queue follows FIFO (First In First Out).</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question"><input type="checkbox" class="faq-checkbox">❓ What is an API?</div>
+      <div class="faq-answer">💡 An API is an interface that allows different software systems to communicate and share data.</div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Tab switching
+  function openSubject(evt, subjectId) {
+    document.querySelectorAll('.subject').forEach(el => el.style.display = 'none');
+    document.querySelectorAll('.tablink').forEach(btn => btn.classList.remove('active'));
+    document.getElementById(subjectId).style.display = 'block';
+    evt.currentTarget.classList.add('active');
+  }
+  document.querySelectorAll('.subject').forEach(el => el.style.display = 'none');
+  document.getElementById('cs').style.display = 'block';
+
+  // Toggle Q&A
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.addEventListener('click', function(e) {
+      if(e.target.tagName.toLowerCase() !== 'input') {
+        this.classList.toggle('open');
+      }
+    });
+  });
+
+  // Dark mode
+  function toggleDarkMode() {
+    document.body.classList.toggle('dark');
+  }
+
+  // Search
+  document.getElementById('searchBox').addEventListener('keyup', function() {
+    let filter = this.value.toLowerCase();
+    document.querySelectorAll('.faq-item').forEach(item => {
+      let text = item.innerText.toLowerCase();
+      item.style.display = text.includes(filter) ? '' : 'none';
+    });
+  });
+
+  // Download PDF (print current subject)
+  function downloadPDF() {
+    window.print();
+  }
+</script>
+
+</body>
+</html>
+  <!-- Physics Section -->
+  <div id="physics" class="subject" style="display:none;">
+    <h2>⚛️ Physics – Top 15 Questions</h2>
+
+    <div class="faq-item">
+      <div class="faq-question"><input type="checkbox" class="faq-checkbox">❓ What is Newton’s first law?</div>
+      <div class="faq-answer">💡 A body remains at rest or in uniform motion unless acted upon by an external force.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question"><input type="checkbox" class="faq-checkbox">❓ Define work in physics.</div>
+      <div class="faq-answer">💡 Work is done when a force is applied on an object and it displaces in the direction of force.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question"><input type="checkbox" class="faq-checkbox">❓ What is kinetic energy?</div>
+      <div class="faq-answer">💡 The energy possessed by a body due to its motion, given by ½mv².</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question"><input type="checkbox" class="faq-checkbox">❓ Explain potential energy.</div>
+      <div class="faq-answer">💡 The stored energy in a body due to its position or configuration, e.g., mgh.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question"><input type="checkbox" class="faq-checkbox">❓ What is Ohm’s Law?</div>
+      <div class="faq-answer">💡 Voltage across a conductor is directly proportional to current (V=IR).</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question"><input type="checkbox" class="faq-checkbox">❓ Define power.</div>
+      <div class="faq-answer">💡 Power is the rate of doing work, P = Work/Time or P = VI in electricity.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question"><input type="checkbox" class="faq-checkbox">❓ What is refraction?</div>
+      <div class="faq-answer">💡 The bending of light when it passes from one medium to another of different density.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question"><input type="checkbox" class="faq-checkbox">❓ Explain Doppler effect.</div>
+      <div class="faq-answer">💡 The apparent change in frequency of a wave due to relative motion of source and observer.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question"><input type="checkbox" class="faq-checkbox">❓ What are longitudinal waves?</div>
+      <div class="faq-answer">💡 Waves in which particles vibrate parallel to the wave direction, e.g., sound waves.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question"><input type="checkbox" class="faq-checkbox">❓ What is gravitational constant (G)?</div>
+      <div class="faq-answer">💡 G = 6.67×10⁻¹¹ Nm²/kg², the universal constant of gravitation.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question"><input type="checkbox" class="faq-checkbox">❓ Define acceleration.</div>
+      <div class="faq-answer">💡 The rate of change of velocity with respect to time.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question"><input type="checkbox" class="faq-checkbox">❓ What is centripetal force?</div>
+      <div class="faq-answer">💡 The force that keeps an object moving in a circular path, directed toward the center.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question"><input type="checkbox" class="faq-checkbox">❓ What is the speed of light?</div>
+      <div class="faq-answer">💡 The speed of light in vacuum is 3×10⁸ m/s.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question"><input type="checkbox" class="faq-checkbox">❓ Explain nuclear fission.</div>
+      <div class="faq-answer">💡 A heavy nucleus splits into smaller nuclei with release of huge energy, e.g., atomic bomb.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question"><input type="checkbox" class="faq-checkbox">❓ Explain nuclear fusion.</div>
+      <div class="faq-answer">💡 Two light nuclei fuse to form a heavier nucleus with large energy release, e.g., Sun.</div>
+    </div>
+  </div>
+  <!-- Microbiology Section -->
+  <div id="microbiology" class="subject" style="display:none;">
+    <h2>🧫 Microbiology – Top 15 Questions</h2>
+
+    <div class="faq-item">
+      <div class="faq-question"><input type="checkbox" class="faq-checkbox">❓ What are bacteria?</div>
+      <div class="faq-answer">💡 Bacteria are single-celled prokaryotic microorganisms found in diverse environments.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question"><input type="checkbox" class="faq-checkbox">❓ Define virus.</div>
+      <div class="faq-answer">💡 Viruses are acellular infectious agents that require a host to replicate.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question"><input type="checkbox" class="faq-checkbox">❓ What is Gram staining?</div>
+      <div class="faq-answer">💡 A differential staining technique used to classify bacteria as Gram-positive or Gram-negative.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question"><input type="checkbox" class="faq-checkbox">❓ Define pathogen.</div>
+      <div class="faq-answer">💡 A pathogen is a microorganism that causes disease in its host.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question"><input type="checkbox" class="faq-checkbox">❓ What are fungi?</div>
+      <div class="faq-answer">💡 Fungi are eukaryotic organisms that include yeasts, molds, and mushrooms.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question"><input type="checkbox" class="faq-checkbox">❓ What are protozoa?</div>
+      <div class="faq-answer">💡 Protozoa are single-celled eukaryotic organisms, often motile and heterotrophic.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question"><input type="checkbox" class="faq-checkbox">❓ Explain antibiotic resistance.</div>
+      <div class="faq-answer">💡 It is when bacteria evolve mechanisms to resist the effects of antibiotics.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question"><input type="checkbox" class="faq-checkbox">❓ What is sterilization?</div>
+      <div class="faq-answer">💡 The complete elimination of all microorganisms, including spores, from an object.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question"><input type="checkbox" class="faq-checkbox">❓ Define aseptic technique.</div>
+      <div class="faq-answer">💡 Procedures used to prevent contamination by unwanted microorganisms.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question"><input type="checkbox" class="faq-checkbox">❓ What are prions?</div>
+      <div class="faq-answer">💡 Misfolded proteins that can cause neurodegenerative diseases, e.g., mad cow disease.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question"><input type="checkbox" class="faq-checkbox">❓ What is a culture medium?</div>
+      <div class="faq-answer">💡 A nutrient solution or solid used to grow microorganisms in the lab.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question"><input type="checkbox" class="faq-checkbox">❓ What is the difference between aerobic and anaerobic bacteria?</div>
+      <div class="faq-answer">💡 Aerobic bacteria need oxygen; anaerobic bacteria grow without oxygen.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question"><input type="checkbox" class="faq-checkbox">❓ What is a biofilm?</div>
+      <div class="faq-answer">💡 A structured community of microorganisms encased in a protective matrix attached to surfaces.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question"><input type="checkbox" class="faq-checkbox">❓ Define normal flora.</div>
+      <div class="faq-answer">💡 Microorganisms that naturally live in or on the human body without causing disease.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question"><input type="checkbox" class="faq-checkbox">❓ What is a vaccine?</div>
+      <div class="faq-answer">💡 A biological preparation that provides immunity to a specific disease.</div>
+    </div>
+  </div>
+  
+  <!-- Chemistry Section -->
+  <div id="chemistry" class="subject" style="display:none;">
+    <h2>🧪 Chemistry – Top 15 Questions</h2>
+
+    <div class="faq-item">
+      <div class="faq-question"><input type="checkbox" class="faq-checkbox">❓ What is an atom?</div>
+      <div class="faq-answer">💡 The smallest unit of matter that retains the properties of an element.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question"><input type="checkbox" class="faq-checkbox">❓ Define molecule.</div>
+      <div class="faq-answer">💡 A group of two or more atoms bonded together chemically.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question"><input type="checkbox" class="faq-checkbox">❓ What is the periodic table?</div>
+      <div class="faq-answer">💡 A tabular arrangement of elements based on atomic number and properties.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question"><input type="checkbox" class="faq-checkbox">❓ Define covalent bond.</div>
+      <div class="faq-answer">💡 A chemical bond formed when two atoms share electrons.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question"><input type="checkbox" class="faq-checkbox">❓ What is ionic bond?</div>
+      <div class="faq-answer">💡 A bond formed by the transfer of electrons from one atom to another.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question"><input type="checkbox" class="faq-checkbox">❓ Define pH.</div>
+      <div class="faq-answer">💡 A scale that measures hydrogen ion concentration; acidity or alkalinity.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question"><input type="checkbox" class="faq-checkbox">❓ What is an acid?</div>
+      <div class="faq-answer">💡 A substance that donates protons (H⁺ ions) in a solution.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question"><input type="checkbox" class="faq-checkbox">❓ What is a base?</div>
+      <div class="faq-answer">💡 A substance that accepts protons or releases hydroxide ions (OH⁻).</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question"><input type="checkbox" class="faq-checkbox">❓ What is electrolysis?</div>
+      <div class="faq-answer">💡 A process of decomposing compounds using an electric current.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question"><input type="checkbox" class="faq-checkbox">❓ Define oxidation.</div>
+      <div class="faq-answer">💡 Loss of electrons or increase in oxidation state of an element.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question"><input type="checkbox" class="faq-checkbox">❓ Define reduction.</div>
+      <div class="faq-answer">💡 Gain of electrons or decrease in oxidation state of an element.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question"><input type="checkbox" class="faq-checkbox">❓ What is Avogadro’s number?</div>
+      <div class="faq-answer">💡 6.022 × 10²³, the number of particles in one mole of a substance.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question"><input type="checkbox" class="faq-checkbox">❓ Define molarity.</div>
+      <div class="faq-answer">💡 The number of moles of solute per liter of solution.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question"><input type="checkbox" class="faq-checkbox">❓ What are isotopes?</div>
+      <div class="faq-answer">💡 Atoms of the same element with the same atomic number but different mass numbers.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question"><input type="checkbox" class="faq-checkbox">❓ Define catalyst.</div>
+      <div class="faq-answer">💡 A substance that speeds up a reaction without being consumed in it.</div>
+    </div>
+  </div>
