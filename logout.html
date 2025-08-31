@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Logout</title>
+</head>
+<body>
+  <h2>Logging you out... Please wait.</h2>
+
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+
+  <script>
+    const firebaseConfig = {
+    apiKey: "AIzaSyCThwA_triD2KvfwaGeI1R4A2u3B2MMSJU",
+    authDomain: "http://career-portal-b4c93.firebaseapp.com",
+    projectId: "career-portal-b4c93",
+    storageBucket: "http://career-portal-b4c93.firebasestorage.app",
+    messagingSenderId: "816165084401",
+    appId: "1:816165084401:web:646aa620a98af0e095dd50"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+
+    // Sign out immediately
+    auth.signOut().then(() => {
+      // After successful logout, go to home page (index.html)
+      window.location.href = "index.html";
+    }).catch(error => {
+      console.error("Logout Error:", error);
+      // If error, still redirect to home
+      window.location.href = "index.html";
+    });
+  </script>
+</body>
+</html>
