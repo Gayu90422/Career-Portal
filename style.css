@@ -1,0 +1,28 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+  background: #f9f9f9;
+}
+
+nav {
+  margin-bottom: 20px;
+  background: #333;
+  padding: 10px;
+}
+
+nav a {
+  color: rgb(217, 17, 17);
+  margin-right: 15px;
+  text-decoration: none;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+.resume-box {
+  border: 1px solid #ccc;
+  padding: 15px;
+  margin-top: 10px;
+  background: #fff;
+}
