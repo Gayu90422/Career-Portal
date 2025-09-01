@@ -185,9 +185,6 @@
     window.print();
   }
 
-</script>
-</body>
-</html>
   <!-- Physics Section -->
   <div id="physics" class="subject" style="display:none;">
     <h2>⚛️ Physics – Top 15 Questions</h2>
@@ -267,6 +264,43 @@
       <div class="faq-answer">💡 Two light nuclei fuse to form a heavier nucleus with large energy release, e.g., Sun.</div>
     </div>
   </div>
+  // Tab switching
+  function openSubject(evt, subjectId) {
+    document.querySelectorAll('.subject').forEach(el => el.style.display = 'none');
+    document.querySelectorAll('.tablink').forEach(btn => btn.classList.remove('active'));
+    document.getElementById(subjectId).style.display = 'block';
+    evt.currentTarget.classList.add('active');
+  }
+  document.querySelectorAll('.subject').forEach(el => el.style.display = 'none');
+  document.getElementById('cs').style.display = 'block';
+
+  // Toggle Q&A
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.addEventListener('click', function(e) {
+      if(e.target.tagName.toLowerCase() !== 'input') {
+        this.classList.toggle('open');
+      }
+    });
+  });
+
+  // Dark mode
+  function toggleDarkMode() {
+    document.body.classList.toggle('dark');
+  }
+
+  // Search
+  document.getElementById('searchBox').addEventListener('keyup', function() {
+    let filter = this.value.toLowerCase();
+    document.querySelectorAll('.faq-item').forEach(item => {
+      let text = item.innerText.toLowerCase();
+      item.style.display = text.includes(filter) ? '' : 'none';
+    });
+  });
+
+  // Download PDF (print current subject)
+  function downloadPDF() {
+    window.print();
+  }
   <!-- Microbiology Section -->
   <div id="microbiology" class="subject" style="display:none;">
     <h2>🧫 Microbiology – Top 15 Questions</h2>
@@ -346,6 +380,43 @@
       <div class="faq-answer">💡 A biological preparation that provides immunity to a specific disease.</div>
     </div>
   </div>
+  // Tab switching
+  function openSubject(evt, subjectId) {
+    document.querySelectorAll('.subject').forEach(el => el.style.display = 'none');
+    document.querySelectorAll('.tablink').forEach(btn => btn.classList.remove('active'));
+    document.getElementById(subjectId).style.display = 'block';
+    evt.currentTarget.classList.add('active');
+  }
+  document.querySelectorAll('.subject').forEach(el => el.style.display = 'none');
+  document.getElementById('cs').style.display = 'block';
+
+  // Toggle Q&A
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.addEventListener('click', function(e) {
+      if(e.target.tagName.toLowerCase() !== 'input') {
+        this.classList.toggle('open');
+      }
+    });
+  });
+
+  // Dark mode
+  function toggleDarkMode() {
+    document.body.classList.toggle('dark');
+  }
+
+  // Search
+  document.getElementById('searchBox').addEventListener('keyup', function() {
+    let filter = this.value.toLowerCase();
+    document.querySelectorAll('.faq-item').forEach(item => {
+      let text = item.innerText.toLowerCase();
+      item.style.display = text.includes(filter) ? '' : 'none';
+    });
+  });
+
+  // Download PDF (print current subject)
+  function downloadPDF() {
+    window.print();
+  }
   
   <!-- Chemistry Section -->
   <div id="chemistry" class="subject" style="display:none;">
@@ -426,6 +497,48 @@
       <div class="faq-answer">💡 A substance that speeds up a reaction without being consumed in it.</div>
     </div>
   </div>
+  // Tab switching
+  function openSubject(evt, subjectId) {
+    document.querySelectorAll('.subject').forEach(el => el.style.display = 'none');
+    document.querySelectorAll('.tablink').forEach(btn => btn.classList.remove('active'));
+    document.getElementById(subjectId).style.display = 'block';
+    evt.currentTarget.classList.add('active');
+  }
+  document.querySelectorAll('.subject').forEach(el => el.style.display = 'none');
+  document.getElementById('cs').style.display = 'block';
+
+  // Toggle Q&A
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.addEventListener('click', function(e) {
+      if(e.target.tagName.toLowerCase() !== 'input') {
+        this.classList.toggle('open');
+      }
+    });
+  });
+
+  // Dark mode
+  function toggleDarkMode() {
+    document.body.classList.toggle('dark');
+  }
+
+  // Search
+  document.getElementById('searchBox').addEventListener('keyup', function() {
+    let filter = this.value.toLowerCase();
+    document.querySelectorAll('.faq-item').forEach(item => {
+      let text = item.innerText.toLowerCase();
+      item.style.display = text.includes(filter) ? '' : 'none';
+    });
+  });
+
+  // Download PDF (print current subject)
+  function downloadPDF() {
+    window.print();
+  }
+
+</script>
+</body>
+</html>
  
+
 
 
