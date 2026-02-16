@@ -141,6 +141,7 @@
               </div>
               <div class="row g-3 p-3">
                 <div class="col-5">
+                  <div class="mb-2"><div class="section-title c-blue">About me</div><div class="p">HTML • CSS • JS</div></div>
                   <div class="mb-2"><div class="section-title c-blue">Skills</div><div class="p">HTML • CSS • JS</div></div>
                   <div class="mb-2"><div class="section-title c-blue">Hobbies</div><div class="p">Reading • Fitness</div></div>
                 </div>
@@ -386,6 +387,7 @@
               </div>
               <div class="row g-2 p-2">
                 <div class="col-6">
+                    
                   <div class="p-2 rounded-3" style="background:#eaf4eb"><div class="thin">Education</div><div class="p">— — —</div></div>
                 </div>
                 <div class="col-6">
@@ -439,6 +441,7 @@
         email: v("email"),
         phone: v("phone"),
         skills: nl2br(v("skills")),
+        aboutme: nl2br(v("aboutme")),
         experience: nl2br(v("experience")),
         education: nl2br(v("education")),
         projects: nl2br(v("projects")),
@@ -452,7 +455,7 @@
     // -------- Renderer for 10 variants --------
     function renderTemplate(n){
       const d = getData();
-      const meta = metaLine(d.email, d.phone, d.loc);
+      const meta = metaLine(d.email, d.phone, d.loc, d.aboutme);
       let html = "";
 
       if(n===1){ // Classic Corporate
@@ -467,6 +470,7 @@
           </div>
           <div class="row g-3 p-3">
             <div class="col-5">
+              ${optSectionColored("About Me", d.aboutme, "c-blue")}
               ${optSectionColored("Skills", d.skills, "c-blue")}
               ${optSectionColored("Hobbies", d.hobbies, "c-blue")}
               ${optSectionColored("Certificates", d.certificates, "c-blue")}
@@ -493,6 +497,7 @@
           </div>
           <div class="row g-3 p-3">
             <div class="col-6">
+             ${optSection("About Me", d.aboutme)}
               ${optSection("Education", d.education)}
               ${optSection("Projects", d.projects)}
             </div>
@@ -521,6 +526,7 @@
           </div>
           <div class="row g-3 p-3">
             <div class="col-4">
+              ${optSectionColored("About Me", d.aboutme, "c-purple")}
               ${optSectionColored("Skills", d.skills, "c-purple")}
               ${optSectionColored("Hobbies", d.hobbies, "c-purple")}
               ${optSectionColored("Certificates", d.certificates, "c-purple")}
@@ -547,6 +553,7 @@
           <div class="p-3">
             <div class="row g-3">
               <div class="col-5">
+                ${optSection("About Me", d.aboutme)}
                 ${optSection("Skills", d.skills)}
                 ${optSection("Certificates", d.certificates)}
                 ${optSection("Awards", d.awards)}
@@ -576,8 +583,11 @@
           </div>
           <div class="row g-3 p-3">
             <div class="col-5">
+              ${optSection("About Me", d.aboutme)}
               ${optSection("Skills", d.skills)}
               ${optSection("Certificates", d.certificates)}
+              
+
             </div>
             <div class="col-7">
               ${optSection("Projects", d.projects)}
@@ -599,7 +609,9 @@
           </div>
           <div class="row g-3 p-3">
             <div class="col-6 bullet">
-              <div class="section-title c-cyan">Education</div>${bulletize(d.education)}
+              ${d.aboutme?`<div class="section-title c-cyan">About Me</div>${bulletize(d.aboutme)}`:""}
+              <div class="section-title c-cyan">Education</div>
+              ${bulletize(d.education)}
               ${d.certificates?`<div class="mt-2"><div class="section-title c-cyan">Certificates</div>${bulletize(d.certificates)}</div>`:""}
             </div>
             <div class="col-6 bullet">
@@ -624,9 +636,11 @@
         <div id="resume" class="a4">
           <div class="p-4 text-center" style="background:#e8f0ff">
             <h2 class="h4 mb-0 c-indigo">${d.name||"Your Name"}</h2>
+            
             <div class="small text-muted">${meta}</div>
           </div>
           <div class="p-3">
+            ${card("About Me", d.aboutme, "c-indigo")}
             ${card("Skills", d.skills, "c-indigo")}
             ${card("Experience", d.experience, "c-indigo")}
             ${card("Education", d.education, "c-indigo")}
@@ -646,11 +660,13 @@
             <h2 class="h4">${d.name||"Your Name"}</h2>
             <div class="small">${meta}</div>
             <hr class="border-light">
+            ${optSection("About Me", d.aboutme)}
             ${optSection("Skills", d.skills)}
             ${optSection("Hobbies", d.hobbies)}
             ${optSection("Certificates", d.certificates)}
           </aside>
           <section class="p-3" style="width:68%">
+            ${optSectionColored("About Me", d.aboutme, "c-blue")}
             ${optSectionColored("Experience", d.experience, "c-blue")}
             ${optSectionColored("Education", d.education, "c-blue")}
             ${optSectionColored("Projects", d.projects, "c-blue")}
@@ -674,6 +690,7 @@
             </div>
           </div>
           <div class="p-3">
+            ${box("About Me", d.aboutme)}
             ${box("Skills", d.skills)}
             ${box("Experience", d.experience)}
             ${box("Education", d.education)}
@@ -702,6 +719,7 @@
           </div>
           <div class="row g-2 p-2">
             <div class="col-6">
+              ${block("About Me", d.aboutme, "#f3f8f4")}
               ${block("Education", d.education, "#eaf4eb")}
               ${block("Certificates", d.certificates, "#fef4e8")}
               ${block("Hobbies", d.hobbies, "#eef7ff")}
@@ -735,6 +753,5 @@
   </script>
 </body>
 </html>
-
 
 
