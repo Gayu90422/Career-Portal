@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Aptitude Test</title>
+<link rel="icon"  type="image/png" href="favicon.png">
+
+<style>
+body{
+    font-family: Arial;
+    background: linear-gradient(135deg,#e0f7fa,#ffffff);
+    text-align:center;
+}
+
+/* Container */
+.container{
+    width:70%;
+    margin:auto;
+    margin-top:20px;
+    background:white;
+    padding:20px;
+    border-radius:15px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.1);
+}
+
+/* Buttons */
+button{
+    padding:10px 20px;
+    margin:10px;
+    border:none;
+    background:#007bff;
+    color:white;
+    border-radius:8px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover{
+    transform:scale(1.05);
+}
+
+/* Options */
+.option{
+    display:block;
+    margin:10px;
+    padding:10px;
+    background:#eee;
+    border-radius:8px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.option:hover{
+    background:#d0e4ff;
+}
+
+.correct{
+    background:#90ee90 !important;
+    animation:pop 0.4s;
+}
+
+.wrong{
+    background:#ff7f7f !important;
+    animation:shake 0.4s;
+}
+
+/* Feedback */
+#feedback{
+    font-size:20px;
+    font-weight:bold;
+    min-height:30px;
+}
+
+/* Progress Bar */
+.progress{
+    width:100%;
+    background:#ddd;
+    border-radius:10px;
+    margin:15px 0;
+}
+
+.progress-bar{
+    height:15px;
+    width:0%;
+    background:#28a745;
+    border-radius:10px;
+    transition:width 0.4s;
+}
+
+/* Floating emoji */
+.emoji{
+    position:fixed;
+    font-size:25px;
+    animation:floatUp 1s ease forwards;
+}
+
+@keyframes floatUp{
+    from{transform:translateY(0); opacity:1;}
+    to{transform:translateY(-80px); opacity:0;}
+}
+
+@keyframes pop{
+    50%{transform:scale(1.2);}
+}
+
+@keyframes shake{
+    25%{transform:translateX(-5px);}
+    50%{transform:translateX(5px);}
+    75%{transform:translateX(-5px);}
+}
+
+/* Certificate */
+.certificate{
+    border:5px solid gold;
+    padding:20px;
+    margin-top:20px;
+    animation:zoom 1s ease;
+}
+
+@keyframes zoom{
+    from{transform:scale(0);}
+    to{transform:scale(1);}
+}
+
+#timer{
+    font-weight:bold;
+    color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+<h2>Aptitude Test</h2>
+
+<button onclick="startLevel('easy')">Easy</button>
+<button onclick="startLevel('medium')">Medium</button>
+<button onclick="startLevel('hard')">Hard</button>
+
+<h3 id="timer"></h3>
+
+<div class="progress">
+<div class="progress-bar" id="progressBar"></div>
+</div>
+
+<div id="quizBox"></div>
+<div id="feedback"></div>
+
+<button id="nextBtn" onclick="nextQuestion()" style="display:none;">Next</button>
+
+<h2 id="result"></h2>
+<div id="certificateArea"></div>
+
+</div>
+
+<script>
+
+/* ---------------- QUESTIONS (Short demo here, you can paste your 75) ---------------- */
+
+const questions = {
+easy: [
+
+{q:"If CAT = 24, DOG = ?", options:["26","30","28","32"], answer:1},
+{q:"Find next: 2, 4, 6, 8, ?", options:["9","10","12","11"], answer:1},
+{q:"If 5 workers do work in 10 days, 10 workers will do in?", options:["5","10","20","2"], answer:0},
+{q:"Odd one out: Apple, Banana, Carrot, Mango", options:["Apple","Banana","Carrot","Mango"], answer:2},
+{q:"If today is Monday, after 10 days?", options:["Wednesday","Thursday","Friday","Saturday"], answer:3},
+{q:"Find missing: 3, 6, 12, 24, ?", options:["36","40","48","60"], answer:2},
+{q:"Clock angle at 3:00?", options:["0°","45°","90°","180°"], answer:2},
+{q:"If 1=3, 2=6, 3=9, then 4=?", options:["10","12","15","16"], answer:1},
+{q:"Series: A, C, E, ?", options:["F","G","H","I"], answer:1},
+{q:"Boat downstream speed is?", options:["u-v","u+v","u×v","u/v"], answer:1},
+{q:"Find next: 1,1,2,3,5,?", options:["6","7","8","9"], answer:2},
+{q:"Mirror of LEFT?", options:["TFEL","FELT","LEFT","TELF"], answer:0},
+{q:"10% of 150?", options:["10","15","20","25"], answer:1},
+{q:"If 3 pens cost 60, 1 pen cost?", options:["10","20","15","25"], answer:1},
+{q:"Odd: 2,3,5,9,11", options:["2","3","5","9"], answer:3},
+{q:"5²=?", options:["10","20","25","30"], answer:2},
+{q:"Opposite of GENEROUS?", options:["Kind","Mean","Happy","Large"], answer:1},
+{q:"Speed=Distance/Time. Distance=100, Time=4. Speed?", options:["20","25","30","40"], answer:1},
+{q:"Find next: 5,10,20,40,?", options:["60","70","80","90"], answer:2},
+{q:"Triangle sum?", options:["90","180","270","360"], answer:1},
+{q:"If ALL=12, BALL=?", options:["14","16","18","20"], answer:2},
+{q:"Find missing: 4,9,16,?", options:["20","25","36","49"], answer:1},
+{q:"Even number?", options:["7","9","11","12"], answer:3},
+{q:"Probability of head?", options:["1/2","1","1/3","0"], answer:0},
+{q:"Series: 7,14,21,?", options:["25","28","30","35"], answer:1}
+
+],
+
+medium: [
+
+{q:"Find next: 2,5,10,17,?", options:["26","24","28","30"], answer:0},
+{q:"If 8 men finish in 12 days, 6 men finish in?", options:["14","16","18","20"], answer:1},
+{q:"HCF of 18 and 24?", options:["6","4","3","12"], answer:0},
+{q:"If 25% of X is 50, X=?", options:["100","150","200","250"], answer:2},
+{q:"Find missing: 1,4,9,16,?", options:["20","24","25","36"], answer:2},
+{q:"Find odd: 121,144,169,200", options:["121","144","169","200"], answer:3},
+{q:"If A=1, B=2, Z=?", options:["24","25","26","27"], answer:2},
+{q:"Next: B,D,G,K,?", options:["P","Q","R","S"], answer:0},
+{q:"Time complexity of linear search?", options:["O(n)","O(log n)","O(1)","O(n²)"], answer:0},
+{q:"Find median of 3,7,9,12,15?", options:["7","9","12","10"], answer:1},
+{q:"Compound interest formula?", options:["P(1+R/100)^T","PRT","P+R","None"], answer:0},
+{q:"Find next: 4,7,13,25,?", options:["45","49","51","53"], answer:1},
+{q:"Probability of 6 in dice?", options:["1/6","1/3","1/2","1"], answer:0},
+{q:"If 3x=18, x=?", options:["4","5","6","7"], answer:2},
+{q:"Square root of 225?", options:["14","15","16","18"], answer:1},
+{q:"Find missing: 8,27,64,?", options:["100","125","216","150"], answer:1},
+{q:"Simple interest on 2000 at 10% for 2 years?", options:["400","300","200","500"], answer:0},
+{q:"Odd: 64,81,100,125", options:["64","81","100","125"], answer:3},
+{q:"Area of circle?", options:["πr²","2πr","πd","None"], answer:0},
+{q:"Angle in straight line?", options:["90","180","270","360"], answer:1},
+{q:"Find next: 3,6,18,72,?", options:["144","216","288","360"], answer:2},
+{q:"If log10 1000=?", options:["2","3","4","1"], answer:1},
+{q:"Boat upstream speed=?", options:["u-v","u+v","u×v","None"], answer:0},
+{q:"Find mode: 2,3,3,4,5?", options:["2","3","4","5"], answer:1},
+{q:"If 4 pens cost 80, 10 pens cost?", options:["150","180","200","250"], answer:2}
+
+],
+hard: [
+
+{q:"Find next: 1,2,6,24,?", options:["60","120","100","144"], answer:1},
+{q:"If 2x+3=15, x=?", options:["5","6","7","4"], answer:1},
+{q:"Determinant of identity matrix?", options:["0","1","2","-1"], answer:1},
+{q:"Binary of 10?", options:["1010","1000","1111","1100"], answer:0},
+{q:"If sin90=?", options:["0","1","-1","None"], answer:1},
+{q:"Find next: 5,12,23,38,?", options:["57","56","60","58"], answer:0},
+{q:"Time complexity of binary search?", options:["O(n)","O(log n)","O(n²)","O(1)"], answer:1},
+{q:"If 5 machines produce 100 items in 2 hours, 10 machines produce?", options:["200","100","400","150"], answer:0},
+{q:"Variance measures?", options:["Spread","Mean","Median","Mode"], answer:0},
+{q:"Find missing: 2,6,12,20,?", options:["30","28","26","32"], answer:0},
+{q:"Permutation formula?", options:["nPr","nCr","n+r","None"], answer:0},
+{q:"Combination formula?", options:["nCr","nPr","n+r","None"], answer:0},
+{q:"Find next: 7,10,8,11,9,?", options:["10","12","13","14"], answer:0},
+{q:"Probability range?", options:["0-1","1-2","-1 to1","None"], answer:0},
+{q:"Solve: 3x-9=0?", options:["2","3","4","5"], answer:1},
+{q:"Find odd: 3,5,11,14,17", options:["3","5","11","14"], answer:3},
+{q:"If 6 men finish work in 15 days, 3 men finish in?", options:["20","25","30","35"], answer:2},
+{q:"Find next: 1,4,27,256,?", options:["3125","1024","625","1296"], answer:0},
+{q:"Log10 100=?", options:["1","2","3","0"], answer:1},
+{q:"Find missing: 11,13,17,19,?", options:["21","23","25","27"], answer:1},
+{q:"Abstract: △□△□△ ?", options:["□","△","○","None"], answer:0},
+{q:"If A>B, B>C, then?", options:["A>C","C>A","A=B","None"], answer:0},
+{q:"Find next: 9,18,16,32,30,?", options:["60","64","58","62"], answer:0},
+{q:"If 20% of X=40, X=?", options:["100","200","300","400"], answer:1},
+{q:"Number of diagonals in square?", options:["2","4","3","1"], answer:0}
+
+]
+
+};
+
+/* ---------------- LOGIC ---------------- */
+
+let currentLevel="";
+let currentIndex=0;
+let score=0;
+let timer;
+let timeLeft=1800;
+
+function startLevel(level){
+currentLevel=level;
+currentIndex=0;
+score=0;
+timeLeft=1800;
+document.getElementById("result").innerHTML="";
+document.getElementById("certificateArea").innerHTML="";
+startTimer();
+showQuestion();
+}
+
+function startTimer(){
+clearInterval(timer);
+timer=setInterval(()=>{
+let min=Math.floor(timeLeft/60);
+let sec=timeLeft%60;
+document.getElementById("timer").innerHTML="Time Left: "+min+":"+sec;
+timeLeft--;
+if(timeLeft<0){
+clearInterval(timer);
+showResult();
+}
+},1000);
+}
+
+function showQuestion(){
+let q=questions[currentLevel][currentIndex];
+let box=document.getElementById("quizBox");
+box.innerHTML="<h3>"+q.q+"</h3>";
+
+q.options.forEach((opt,i)=>{
+box.innerHTML+=`<div class="option" onclick="checkAnswer(${i})">${opt}</div>`;
+});
+
+updateProgress();
+}
+
+function updateProgress(){
+let total=questions[currentLevel].length;
+let percent=(currentIndex/total)*100;
+document.getElementById("progressBar").style.width=percent+"%";
+}
+
+function checkAnswer(selected){
+let q=questions[currentLevel][currentIndex];
+let options=document.querySelectorAll(".option");
+let feedback=document.getElementById("feedback");
+
+options.forEach(opt=>opt.style.pointerEvents="none");
+
+if(selected==q.answer){
+options[selected].classList.add("correct");
+score++;
+feedback.innerHTML="🎉 Awesome! Keep going!";
+createEmoji("🎉");
+}else{
+options[selected].classList.add("wrong");
+options[q.answer].classList.add("correct");
+feedback.innerHTML="💪 Don't stop! You can do it!";
+}
+
+document.getElementById("nextBtn").style.display="inline-block";
+}
+
+function createEmoji(symbol){
+let emoji=document.createElement("div");
+emoji.className="emoji";
+emoji.innerHTML=symbol;
+emoji.style.left=Math.random()*90+"%";
+emoji.style.top="60%";
+document.body.appendChild(emoji);
+setTimeout(()=>emoji.remove(),1000);
+}
+
+function nextQuestion(){
+currentIndex++;
+document.getElementById("nextBtn").style.display="none";
+document.getElementById("feedback").innerHTML="";
+
+if(currentIndex<questions[currentLevel].length){
+showQuestion();
+}else{
+showResult();
+}
+}
+
+function showResult(){
+clearInterval(timer);
+document.getElementById("quizBox").innerHTML="";
+document.getElementById("timer").innerHTML="";
+document.getElementById("progressBar").style.width="100%";
+
+let resultBox=document.getElementById("result");
+let count=0;
+let finalScore=score;
+let total=questions[currentLevel].length;
+
+let counter=setInterval(()=>{
+if(count<=finalScore){
+resultBox.innerHTML="Your Score: "+count+" / "+total;
+count++;
+}else{
+clearInterval(counter);
+
+if(finalScore>=Math.ceil(total*0.7)){
+generateCertificate();
+}
+}
+},60);
+}
+
+function generateCertificate(){
+let area=document.getElementById("certificateArea");
+area.innerHTML=`
+<div class="certificate">
+<h2>🏆 Certificate of Achievement</h2>
+<p>This is to certify that</p>
+<h3>Candidate</h3>
+<p>has successfully passed the Aptitude Test.</p>
+</div>`;
+createEmoji("🎊");
+createEmoji("🎉");
+createEmoji("✨");
+}
+
+</script>
+
+</body>
+</html>
